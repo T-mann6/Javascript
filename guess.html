@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Guessing game</title>
     </head>
     <body>
         <!-- Guess the number game
@@ -16,22 +16,29 @@
         -->
         <h1>Guess the number</h1>
         <p id="tilbakemelding"></p>
+        <h2 id="timer"></h2>
         <p id="antall_gjett"></p>
 
         <input id="gjette_felt" type="text">
         <button id="gjette_knapp">Gjett</button>
         <button id="restart"></button>
         <p id="riktig_gjett"></p>
+        <p id="gjett_tid"></p>
         <script>
             var tall = 0
             var riktig_tall = 0
 
-            var gjette_felt = document.querySelector('#gjette_felt')
-            var knapp = document.querySelector('#gjette_knapp')
-            var tilbakemelding = document.querySelector('#tilbakemelding')
-            var antall_gjett = document.querySelector('#antall_gjett')
-            var knapp_restart = document.querySelector('#restart')
-            var riktig_gjett = document.querySelector('#riktig_gjett')
+            var EL_gjette_felt = document.querySelector('#gjette_felt')
+            var EL_knapp = document.querySelector('#gjette_knapp')
+            var EL_tilbakemelding = document.querySelector('#tilbakemelding')
+            var EL_antall_gjett = document.querySelector('#antall_gjett')
+            var EL_knapp_restart = document.querySelector('#restart')
+            var EL_riktig_gjett = document.querySelector('#riktig_gjett')
+            var EL_timer = document.querySelector('#timer')
+            var EL_gjett_tid = document.querySelector('#gjett_tid')
+
+            var myVar
+
 
 
 
@@ -39,34 +46,48 @@
                 console.log(gjette_felt.value)
 
                 tall += 1
-                antall_gjett.innerHTML = 'Du har gjettet '+ tall + ' ganger'
+                EL_antall_gjett.innerHTML = 'Du har gjettet '+ tall + ' ganger'
 
-                if (gjette_felt.value == tilfeldig_tall){
-                    tilbakemelding.innerHTML = "rett tall"
-                    knapp_restart.innerHTML = "Vil du ha et nytt tall å gjette deg fram til"
+                if (EL_gjette_felt.value == tilfeldig_tall){
+                    EL_tilbakemelding.innerHTML = "rett tall"
+                    EL_knapp_restart.innerHTML = "Vil du ha et nytt tall å gjette deg fram til"
                     riktig_tall += 1
-                    riktig_gjett.innerHTML = "Du har gjettet riktig " + riktig_tall + " ganger"
-                } else if (gjette_felt.value < tilfeldig_tall){
-                    tilbakemelding.innerHTML = "for lavt"
-                } else if (gjette_felt.value > tilfeldig_tall){
-                    tilbakemelding.innerHTML = "for høyt"
+                    EL_riktig_gjett.innerHTML = "Du har gjettet riktig " + riktig_tall + " ganger"
+                    clearInterval(myVar)
+                    EL_gjett_tid.innerHTML = "Du brukte " + teller + "sec. på å gjette riktig"
+                } else if (EL_gjette_felt.value < tilfeldig_tall){
+                    EL_tilbakemelding.innerHTML = "for lavt"
+                } else if (EL_gjette_felt.value > tilfeldig_tall){
+                    EL_tilbakemelding.innerHTML = "for høyt"
                 }
             }
 
             function restart(){
+                clearInterval(myVar)
                 tilfeldig_tall = Math.floor(Math.random()*100)
                 console.log(tilfeldig_tall)
-                tilbakemelding.innerHTML = ''
+                EL_tilbakemelding.innerHTML = ''
                 tall = 0
-                antall_gjett.innerHTML = ''
-                knapp_restart.innerHTML = ''
+                EL_antall_gjett.innerHTML = ''
+                EL_knapp_restart.innerHTML = ''
+                teller = 0
+                myVar = setInterval(myTimer, 1000)
             }
 
-            knapp.addEventListener('click', gjett)
-            knapp_restart.addEventListener('click', restart)
+            EL_knapp.addEventListener('click', gjett)
+            EL_knapp_restart.addEventListener('click', restart)
 
             var tilfeldig_tall = Math.floor(Math.random()*100)
             console.log(tilfeldig_tall)
+
+            var teller = 0
+            function myTimer(){
+                console.log('timer: ' + teller)
+                teller++
+                EL_timer.innerHTML = "Tid: " + teller + " sec."
+            }
+
+            myVar = setInterval(myTimer, 1000)
 
         </script>
     </body>
