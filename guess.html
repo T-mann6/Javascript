@@ -24,9 +24,12 @@
         <button id="restart"></button>
         <p id="riktig_gjett"></p>
         <p id="gjett_tid"></p>
+        <p id="mean_gjett"></p>
         <script>
             var tall = 0
             var riktig_tall = 0
+            var totalt_gjett = 0
+            var spillt = 0
 
             var EL_gjette_felt = document.querySelector('#gjette_felt')
             var EL_knapp = document.querySelector('#gjette_knapp')
@@ -36,16 +39,16 @@
             var EL_riktig_gjett = document.querySelector('#riktig_gjett')
             var EL_timer = document.querySelector('#timer')
             var EL_gjett_tid = document.querySelector('#gjett_tid')
+            var EL_mean_gjett = document.querySelector('#mean_gjett')
 
             var myVar
-
-
-
 
             function gjett(){
                 console.log(gjette_felt.value)
 
                 tall += 1
+                totalt_gjett += 1
+
                 EL_antall_gjett.innerHTML = 'Du har gjettet '+ tall + ' ganger'
 
                 if (EL_gjette_felt.value == tilfeldig_tall){
@@ -55,6 +58,7 @@
                     EL_riktig_gjett.innerHTML = "Du har gjettet riktig " + riktig_tall + " ganger"
                     clearInterval(myVar)
                     EL_gjett_tid.innerHTML = "Du brukte " + teller + "sec. på å gjette riktig"
+                    EL_mean_gjett.innerHTML = "Du ha gjettet i gjennomsnitt " + (total_gjett / spillt).toFixed(2) + " ganger"
                 } else if (EL_gjette_felt.value < tilfeldig_tall){
                     EL_tilbakemelding.innerHTML = "for lavt"
                 } else if (EL_gjette_felt.value > tilfeldig_tall){
@@ -72,6 +76,7 @@
                 EL_knapp_restart.innerHTML = ''
                 teller = 0
                 myVar = setInterval(myTimer, 1000)
+                spillt++
             }
 
             EL_knapp.addEventListener('click', gjett)
@@ -88,7 +93,6 @@
             }
 
             myVar = setInterval(myTimer, 1000)
-
         </script>
     </body>
 </html>
