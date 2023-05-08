@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS Clicker</title>
+</head>
+<body>
+
+    <h2 id="songs">0 Songs</h2>
+    <img src="img/BTS.png" alt="" id="knapp">
+
+    <script>
+        var tall = 0
+        EL_knapp = document.querySelector('#knapp')
+        EL_songs = document.querySelector('#songs')
+
+
+        function click(){
+            tall += 1
+            console.log(tall)
+            EL_songs.innerHTML = tall + " Songs"
+        }
+
+        EL_knapp.addEventListener('click', click)
+        console.log(tall)
+
+    </script>
+</body>
+</html>

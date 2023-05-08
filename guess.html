@@ -29,7 +29,7 @@
             var tall = 0
             var riktig_tall = 0
             var totalt_gjett = 0
-            var spillt = 0
+            var spillt = 1
 
             var EL_gjette_felt = document.querySelector('#gjette_felt')
             var EL_knapp = document.querySelector('#gjette_knapp')
@@ -58,7 +58,8 @@
                     EL_riktig_gjett.innerHTML = "Du har gjettet riktig " + riktig_tall + " ganger"
                     clearInterval(myVar)
                     EL_gjett_tid.innerHTML = "Du brukte " + teller + "sec. på å gjette riktig"
-                    EL_mean_gjett.innerHTML = "Du ha gjettet i gjennomsnitt " + (total_gjett / spillt).toFixed(2) + " ganger"
+                    EL_mean_gjett.innerHTML = "Du ha gjettet i gjennomsnitt " + (totalt_gjett / spillt).toFixed(2) + " ganger"
+                    EL_knapp.innerHTML = ""
                 } else if (EL_gjette_felt.value < tilfeldig_tall){
                     EL_tilbakemelding.innerHTML = "for lavt"
                 } else if (EL_gjette_felt.value > tilfeldig_tall){
@@ -70,6 +71,7 @@
                 clearInterval(myVar)
                 tilfeldig_tall = Math.floor(Math.random()*100)
                 console.log(tilfeldig_tall)
+                EL_knapp.innerHTML = "Gjett"
                 EL_tilbakemelding.innerHTML = ''
                 tall = 0
                 EL_antall_gjett.innerHTML = ''
