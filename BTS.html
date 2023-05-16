@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!--
+            at least seven buildings
+            - RM
+            - Suga
+            - J-hope
+            - Jin
+            - Jungkook
+            - V
+            - Jimin
+        -->
+        <div class="BTS">
+            <div>
+                <h2 id="songs">0 Songs</h2>
+            </div>
+            <img src="img/BTS.png" alt="" id="knapp">
+        </div>
+        <div class="buildings">
+            <div>
+                <button id="RM"><img src="img/RM.jpg" alt=""><h4 id="tekst_RM">RM: 0</h4></button>
+            </div>
+            <div>
+                <button id="Suga"><img src="img/Suga.jpg" alt=""><h4 id="tekst_Suga">Suga: 0</h4></button>
+            </div>
+            <div>
+                <button id="J-hope"><img src="img/J-hope.jpg" alt=""><h4 id="tekst_J-hope">J-hope: 0</h4></button>
+            </div>
+            <div>
+                <button id="Jin"><img src="img/Jin.jpg" alt=""><h4 id="tekst_Jin">Jin: 0</h4></button>
+            </div>
+            <div>
+                <button id="Jungkook"><img src="img/Jungkook.jpg" alt=""><h4 id='tekst_Jungkook'>Jungkook: 0</h4></button>
+            </div>
+            <div>
+                <button id="V"><img src="img/V.jpg" alt=""><h4 id="tekst_V">V: 0</h4><button>
+            </div>
+            <div>
+                <button id="Jimin"><img src="img/Jimin.jpg" alt=""><h4 id="tekst_Jimin">Jimin: 0</h4></button>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        var tall = 0
+        var Kim_Namjoon = 0
+        var Min_Yoongi = 0
+        var Jung_hoseok = 0
+        var Kim_Seokjin = 0
+        var Jeon_Jungkook = 0
+        var Kim_Taehyung = 0
+        var Park_Jimin = 0
+        var EL_knapp = document.querySelector('#knapp')
+        var EL_songs = document.querySelector('#songs')
+        var EL_Rap_Monster = document.querySelector('#RM')
+        var EL_Joonie = document.querySelector('#tekst_RM')
+        var EL_Suga = document.querySelector('#Suga')
+        var EL_Yoongie = document.querySelector('#tekst_Suga')
+        var EL_J_hope = document.querySelector('#J-hope')
+        var EL_Hobi = document.querySelector('#tekst_J-hope')
+        var EL_Jin = document.querySelector('#Jin')
+        var EL_WWH = document.querySelector('#tekst_Jin')
+        var EL_Jungkook = document.querySelector('#Jungkook')
+        var EL_JK = document.querySelector('#tekst_Jungkook')
+        var EL_Taehyung = document.querySelector('#V')
+        var EL_TaeTae = document.querySelector('#tekst_V')
+        var EL_Jimin = document.querySelector('#Jimin')
+        var EL_Jiminie = document.querySelector('#tekst_Jimin')
+
+
+        function click(){
+            tall += 1
+            console.log(tall)
+            EL_songs.innerHTML = tall + " Songs"
+        }
+
+        function RM() {
+            Kim_Namjoon += 1
+            EL_Joonie.innerHTML = 'RM: ' + Kim_Namjoon
+            console.log(Kim_Namjoon)
+        }
+
+        function Suga() {
+            Min_Yoongi += 1
+            EL_Yoongie.innerHTML = 'Suga: ' + Min_Yoongi
+            console.log(Min_Yoongi)
+        }
+
+        function J_hope() {
+            Jung_hoseok += 1
+            EL_Hobi.innerHTML = 'J-hope: ' + Jung_hoseok
+            console.log(Jung_hoseok)
+        }
+
+        function Jin() {
+            Kim_Seokjin += 1
+            EL_WWH.innerHTML = 'Jin: ' + Kim_Seokjin
+            console.log(Kim_Seokjin)
+        }
+
+        function Jungkook() {
+            Jeon_Jungkook += 1
+            EL_JK.innerHTML = 'Jungkook: ' + Jeon_Jungkook
+            console.log(Jeon_Jungkook)
+        }
+
+        function V() {
+            Kim_Taehyung += 1
+            EL_TaeTae.innerHTML = 'V: ' + Kim_Taehyung
+            console.log(Kim_Taehyung)
+        }
+
+        function Jimin() {
+            Park_Jimin += 1
+            EL_Jiminie.innerHTML = 'Jimin: ' + Park_Jimin
+            console.log(Park_Jimin)
+        }
+
+        EL_knapp.addEventListener('click', click)
+        EL_Rap_Monster.addEventListener('click', RM)
+        EL_Suga.addEventListener('click', Suga)
+        EL_J_hope.addEventListener('click', J_hope)
+        EL_Jin.addEventListener('click', Jin)
+        EL_Jungkook.addEventListener('click', Jungkook)
+        EL_Taehyung.addEventListener('click', V)
+        EL_Jimin.addEventListener('click', Jimin)
+        console.log(tall)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+.buildings {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    text-align: end;
+    justify-content: flex-end;
+    width: fit-content;
+    float: right;
+    padding-left: 33%;
+}
+
+.BTS {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.container {
+    display: flex;
+}
