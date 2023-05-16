@@ -54,12 +54,19 @@
     <script>
         var tall = 0
         var Kim_Namjoon = 0
+        var RM_pris = 15
         var Min_Yoongi = 0
+        var Suga_pris = 100
         var Jung_hoseok = 0
+        var JH_pris = 1100
         var Kim_Seokjin = 0
+        var Jin_pris = 12000
         var Jeon_Jungkook = 0
+        var JK_pris = 130000
         var Kim_Taehyung = 0
+        var V_pris = 1400000
         var Park_Jimin = 0
+        var Jimin_pris = 20000000
         var EL_knapp = document.querySelector('#knapp')
         var EL_songs = document.querySelector('#songs')
         var EL_Rap_Monster = document.querySelector('#RM')
@@ -80,50 +87,70 @@
 
         function click(){
             tall += 1
-            console.log(tall)
             EL_songs.innerHTML = tall + " Songs"
         }
 
         function RM() {
-            Kim_Namjoon += 1
-            EL_Joonie.innerHTML = 'RM: ' + Kim_Namjoon
-            console.log(Kim_Namjoon)
+            if (tall >= RM_pris) {
+                Kim_Namjoon += 1
+                EL_Joonie.innerHTML = 'RM: ' + Kim_Namjoon
+                tall -= RM_pris
+                EL_songs.innerHTML = tall + ' Songs'
+            }
         }
 
         function Suga() {
-            Min_Yoongi += 1
-            EL_Yoongie.innerHTML = 'Suga: ' + Min_Yoongi
-            console.log(Min_Yoongi)
+            if (tall >= Suga_pris) {
+                Min_Yoongi += 1
+                EL_Yoongie.innerHTML = 'Suga: ' + Min_Yoongi
+                tall -= Suga_pris
+                EL_songs.innerHTML = tall + ' Songs'
+            }
         }
 
         function J_hope() {
-            Jung_hoseok += 1
-            EL_Hobi.innerHTML = 'J-hope: ' + Jung_hoseok
-            console.log(Jung_hoseok)
+            if (tall >= JH_pris) {
+                Jung_hoseok += 1
+                EL_Hobi.innerHTML = 'J-hope: ' + Jung_hoseok
+                tall -= JH_pris
+                EL_songs.innerHTML = tall + ' Songs'
+            }  
         }
 
         function Jin() {
-            Kim_Seokjin += 1
-            EL_WWH.innerHTML = 'Jin: ' + Kim_Seokjin
-            console.log(Kim_Seokjin)
+            if (tall >= Jin_pris) {
+                Kim_Seokjin += 1
+                EL_WWH.innerHTML = 'Jin: ' + Kim_Seokjin
+                tall -= Jin_pris
+                EL_songs.innerHTML = tall + ' Songs'
+            }
         }
 
         function Jungkook() {
-            Jeon_Jungkook += 1
-            EL_JK.innerHTML = 'Jungkook: ' + Jeon_Jungkook
-            console.log(Jeon_Jungkook)
+            if(tall >= JK_pris) {
+                Jeon_Jungkook += 1
+                EL_JK.innerHTML = 'Jungkook: ' + Jeon_Jungkook
+                tall -= JK_pris
+                EL_songs.innerHTML = tall + ' Songs'
+            } 
         }
 
         function V() {
-            Kim_Taehyung += 1
-            EL_TaeTae.innerHTML = 'V: ' + Kim_Taehyung
-            console.log(Kim_Taehyung)
+            if (tall >= V_pris) {
+                Kim_Taehyung += 1
+                EL_TaeTae.innerHTML = 'V: ' + Kim_Taehyung
+                tall -= V_pris
+                EL_songs.innerHTML = tall + ' Songs'
+            }
         }
 
         function Jimin() {
-            Park_Jimin += 1
-            EL_Jiminie.innerHTML = 'Jimin: ' + Park_Jimin
-            console.log(Park_Jimin)
+            if (tall >= Jimin_pris) {
+                Park_Jimin += 1
+                EL_Jiminie.innerHTML = 'Jimin: ' + Park_Jimin
+                tall -= Jimin_pris
+                EL_songs.innerHTML = tall + ' Songs'
+            }
         }
 
         EL_knapp.addEventListener('click', click)
@@ -134,8 +161,6 @@
         EL_Jungkook.addEventListener('click', Jungkook)
         EL_Taehyung.addEventListener('click', V)
         EL_Jimin.addEventListener('click', Jimin)
-        console.log(tall)
-
     </script>
 </body>
 </html>
