@@ -22,12 +22,14 @@
         <div class="BTS">
             <div>
                 <h2 id="songs">0 Songs</h2>
+                <p id="sps">per second: 0</p>
             </div>
             <img src="img/BTS.png" alt="" id="knapp">
+            <button id="reset-button">Wipe Save</button>
         </div>
         <div class="buildings">
             <div>
-                <button id="RM"><img src="img/RM.jpg" alt=""><h4 id="tekst_RM">RM: 0</h4></button>
+                <button id="Rap-Monster"><img src="img/RM.jpg" alt=""><h4 id="tekst_RM">RM: 0</h4></button>
             </div>
             <div>
                 <button id="Suga"><img src="img/Suga.jpg" alt=""><h4 id="tekst_Suga">Suga: 0</h4></button>
@@ -55,21 +57,31 @@
         var tall = 0
         var Kim_Namjoon = 0
         var RM_pris = 15
-        var Min_Yoongi = 0
+        var RM_multiplier = 0.1
+        var sg = 0
         var Suga_pris = 100
-        var Jung_hoseok = 0
+        var Suga_multiplier = 1
+        var jh = 0
         var JH_pris = 1100
-        var Kim_Seokjin = 0
+        var JH_multiplier = 8
+        var j = 0
         var Jin_pris = 12000
-        var Jeon_Jungkook = 0
+        var Jin_multiplier = 47
+        var jk = 0
         var JK_pris = 130000
-        var Kim_Taehyung = 0
+        var JK_multiplier = 260
+        var v = 0
         var V_pris = 1400000
-        var Park_Jimin = 0
+        var V_multiplier = 1400
+        var jm = 0
         var Jimin_pris = 20000000
+        var Jimin_multiplier = 7800
+        var sps = 0
         var EL_knapp = document.querySelector('#knapp')
         var EL_songs = document.querySelector('#songs')
-        var EL_Rap_Monster = document.querySelector('#RM')
+        var EL_sps = document.querySelector('#sps')
+        var EL_reset = document.querySelector('#reset-button')
+        var EL_Rap_Monster = document.querySelector('#Rap-Monster')
         var EL_Joonie = document.querySelector('#tekst_RM')
         var EL_Suga = document.querySelector('#Suga')
         var EL_Yoongie = document.querySelector('#tekst_Suga')
@@ -101,7 +113,7 @@
 
         function Suga() {
             if (tall >= Suga_pris) {
-                Min_Yoongi += 1
+                sg += 1
                 EL_Yoongie.innerHTML = 'Suga: ' + Min_Yoongi
                 tall -= Suga_pris
                 EL_songs.innerHTML = tall + ' Songs'
@@ -110,7 +122,7 @@
 
         function J_hope() {
             if (tall >= JH_pris) {
-                Jung_hoseok += 1
+                jh += 1
                 EL_Hobi.innerHTML = 'J-hope: ' + Jung_hoseok
                 tall -= JH_pris
                 EL_songs.innerHTML = tall + ' Songs'
@@ -119,7 +131,7 @@
 
         function Jin() {
             if (tall >= Jin_pris) {
-                Kim_Seokjin += 1
+                j += 1
                 EL_WWH.innerHTML = 'Jin: ' + Kim_Seokjin
                 tall -= Jin_pris
                 EL_songs.innerHTML = tall + ' Songs'
@@ -128,7 +140,7 @@
 
         function Jungkook() {
             if(tall >= JK_pris) {
-                Jeon_Jungkook += 1
+                jk += 1
                 EL_JK.innerHTML = 'Jungkook: ' + Jeon_Jungkook
                 tall -= JK_pris
                 EL_songs.innerHTML = tall + ' Songs'
@@ -137,7 +149,7 @@
 
         function V() {
             if (tall >= V_pris) {
-                Kim_Taehyung += 1
+                v += 1
                 EL_TaeTae.innerHTML = 'V: ' + Kim_Taehyung
                 tall -= V_pris
                 EL_songs.innerHTML = tall + ' Songs'
@@ -146,12 +158,90 @@
 
         function Jimin() {
             if (tall >= Jimin_pris) {
-                Park_Jimin += 1
+                jm += 1
                 EL_Jiminie.innerHTML = 'Jimin: ' + Park_Jimin
                 tall -= Jimin_pris
                 EL_songs.innerHTML = tall + ' Songs'
             }
         }
+
+        function wipeSave() {
+            tall = 0;
+            Kim_Namjoon = 0;
+            sg = 0;
+            jh = 0;
+            j = 0;
+            jk = 0;
+            v = 0;
+            jm = 0;
+            EL_songs.innerHTML = '0 Songs';
+            EL_Joonie.innerHTML = 'RM: 0';
+            EL_Yoongie.innerHTML = 'Suga: 0';
+            EL_Hobi.innerHTML = 'J-hope: 0';
+            EL_WWH.innerHTML = 'Jin: 0';
+            EL_JK.innerHTML = 'Jungkook: 0';
+            EL_TaeTae.innerHTML = 'V: 0';
+            EL_Jiminie.innerHTML = 'Jimin: 0';
+            updateSPS();
+            localStorage.removeItem('gameState');
+        }
+
+        function updateSPS() {
+            sps = 
+                Kim_Namjoon * RM_multiplier +
+                sg * Suga_multiplier +
+                jh * JH_multiplier +
+                j * Jin_multiplier +
+                jk * JK_multiplier +
+                v * V_multiplier +
+                jm * Jimin_multiplier
+
+            EL_sps.innerHTML = 'Per second: ' + sps
+        }
+
+        function generateSongs() {
+            tall += sps
+            EL_songs.innerHTML = tall + ' Songs'
+        }
+
+        function saveGameState() {
+            var gameState = {
+                tall: tall,
+                Kim_Namjoon: Kim_Namjoon,
+                sg: sg,
+                jh: jh,
+                j: j,
+                jk: jk,
+                v: v,
+                jm: jm,
+            };
+            localStorage.setItem('gameState', JSON.stringify(gameState));
+        }
+
+        function loadGameState() {
+        var savedState = localStorage.getItem('gameState');
+            if (savedState) {
+                var gameState = JSON.parse(savedState);
+                tall = gameState.tall || 0;
+                Kim_Namjoon = gameState.Kim_Namjoon || 0;
+                sg = gameState.sg || 0;
+                jh = gameState.jh || 0;
+                j = gameState.j || 0;
+                jk = gameState.jk || 0;
+                v = gameState.v || 0;
+                jm = gameState.jm || 0;
+                EL_songs.innerHTML = tall + ' Songs';
+                EL_Joonie.innerHTML = 'RM: ' + Kim_Namjoon;
+                EL_Yoongie.innerHTML = 'Suga: ' + sg;
+                EL_Hobi.innerHTML = 'J-hope: ' + jh;
+                EL_WWH.innerHTML = 'Jin: ' + j;
+                EL_JK.innerHTML = 'Jungkook: ' + jk;
+                EL_TaeTae.innerHTML = 'V: ' + v;
+                EL_Jiminie.innerHTML = 'Jimin: ' + jm;
+                updateSPS();
+            }
+        }
+
 
         EL_knapp.addEventListener('click', click)
         EL_Rap_Monster.addEventListener('click', RM)
@@ -161,6 +251,18 @@
         EL_Jungkook.addEventListener('click', Jungkook)
         EL_Taehyung.addEventListener('click', V)
         EL_Jimin.addEventListener('click', Jimin)
+        EL_reset.addEventListener('click', wipeSave)
+        window.addEventListener('load', loadGameState)
+        window.addEventListener('keydown', function(event) {
+            // Check if Ctrl key and 's' key are pressed
+            if (event.ctrlKey && event.key === 's') {
+                event.preventDefault(); // Prevent the default browser save behavior
+
+                saveGame(); // Save the game state
+            }
+        })
+
+        setInterval(generateSongs, 1000)
     </script>
 </body>
 </html>
