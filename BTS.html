@@ -99,7 +99,7 @@
 
         function click(){
             tall += 1
-            EL_songs.innerHTML = tall + " Songs"
+            EL_songs.innerHTML = Math.floor(tall) + " Songs"
         }
 
         function RM() {
@@ -107,61 +107,61 @@
                 Kim_Namjoon += 1
                 EL_Joonie.innerHTML = 'RM: ' + Kim_Namjoon
                 tall -= RM_pris
-                EL_songs.innerHTML = tall + ' Songs'
+                EL_songs.innerHTML = Math.floor(tall) + ' Songs'
             }
         }
 
         function Suga() {
             if (tall >= Suga_pris) {
                 sg += 1
-                EL_Yoongie.innerHTML = 'Suga: ' + Min_Yoongi
+                EL_Yoongie.innerHTML = 'Suga: ' + sg
                 tall -= Suga_pris
-                EL_songs.innerHTML = tall + ' Songs'
+                EL_songs.innerHTML = Math.floor(tall) + ' Songs'
             }
         }
 
         function J_hope() {
             if (tall >= JH_pris) {
                 jh += 1
-                EL_Hobi.innerHTML = 'J-hope: ' + Jung_hoseok
+                EL_Hobi.innerHTML = 'J-hope: ' + jh
                 tall -= JH_pris
-                EL_songs.innerHTML = tall + ' Songs'
+                EL_songs.innerHTML = Math.floor(tall) + ' Songs'
             }  
         }
 
         function Jin() {
             if (tall >= Jin_pris) {
                 j += 1
-                EL_WWH.innerHTML = 'Jin: ' + Kim_Seokjin
+                EL_WWH.innerHTML = 'Jin: ' + j
                 tall -= Jin_pris
-                EL_songs.innerHTML = tall + ' Songs'
+                EL_songs.innerHTML = Math.floor(tall) + ' Songs'
             }
         }
 
         function Jungkook() {
             if(tall >= JK_pris) {
                 jk += 1
-                EL_JK.innerHTML = 'Jungkook: ' + Jeon_Jungkook
+                EL_JK.innerHTML = 'Jungkook: ' + jk
                 tall -= JK_pris
-                EL_songs.innerHTML = tall + ' Songs'
+                EL_songs.innerHTML = Math.floor(tall) + ' Songs'
             } 
         }
 
         function V() {
             if (tall >= V_pris) {
                 v += 1
-                EL_TaeTae.innerHTML = 'V: ' + Kim_Taehyung
+                EL_TaeTae.innerHTML = 'V: ' + v
                 tall -= V_pris
-                EL_songs.innerHTML = tall + ' Songs'
+                EL_songs.innerHTML = Math.floor(tall) + ' Songs'
             }
         }
 
         function Jimin() {
             if (tall >= Jimin_pris) {
                 jm += 1
-                EL_Jiminie.innerHTML = 'Jimin: ' + Park_Jimin
+                EL_Jiminie.innerHTML = 'Jimin: ' + jm
                 tall -= Jimin_pris
-                EL_songs.innerHTML = tall + ' Songs'
+                EL_songs.innerHTML = Math.floor(tall) + ' Songs'
             }
         }
 
@@ -201,7 +201,31 @@
 
         function generateSongs() {
             tall += sps
-            EL_songs.innerHTML = tall + ' Songs'
+            EL_songs.innerHTML = Math.floor(tall) + ' Songs'
+        }
+
+        function resetGame() {
+            localStorage.removeItem('gameState');
+            tall = 0;
+            Kim_Namjoon = 0;
+            sg = 0;
+            jh = 0;
+            j = 0;
+            jk = 0;
+            v = 0;
+            jm = 0;
+            updateUI();
+        }
+
+        function updateUI() {
+            EL_songs.innerHTML = tall + ' Songs';
+            EL_Joonie.innerHTML = 'RM: ' + Kim_Namjoon;
+            EL_Yoongie.innerHTML = 'Suga: ' + sg;
+            EL_Hobi.innerHTML = 'J-hope: ' + jh;
+            EL_WWH.innerHTML = 'Jin: ' + j;
+            EL_JK.innerHTML = 'Jungkook: ' + jk;
+            EL_TaeTae.innerHTML = 'V: ' + v;
+            EL_Jiminie.innerHTML = 'Jimin: ' + jm;
         }
 
         function saveGameState() {
@@ -219,7 +243,7 @@
         }
 
         function loadGameState() {
-        var savedState = localStorage.getItem('gameState');
+            var savedState = localStorage.getItem('gameState');
             if (savedState) {
                 var gameState = JSON.parse(savedState);
                 tall = gameState.tall || 0;
@@ -239,6 +263,7 @@
                 EL_TaeTae.innerHTML = 'V: ' + v;
                 EL_Jiminie.innerHTML = 'Jimin: ' + jm;
                 updateSPS();
+                generateSongs()
             }
         }
 
@@ -253,12 +278,13 @@
         EL_Jimin.addEventListener('click', Jimin)
         EL_reset.addEventListener('click', wipeSave)
         window.addEventListener('load', loadGameState)
+        window.addEventListener('beforeunload', saveGameState)
         window.addEventListener('keydown', function(event) {
             // Check if Ctrl key and 's' key are pressed
             if (event.ctrlKey && event.key === 's') {
                 event.preventDefault(); // Prevent the default browser save behavior
 
-                saveGame(); // Save the game state
+                saveGameState(); // Save the game state
             }
         })
 
