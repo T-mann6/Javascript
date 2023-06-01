@@ -1,12 +1,15 @@
 .buildings {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-    text-align: end;
-    justify-content: flex-end;
-    width: fit-content;
-    float: right;
-    padding-left: 33%;
+    height: 100%;
+    top: 0px;
+    right: 0px;
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: scroll;   
+}
+
+.separator {
+    text-align: center;
+    width: 1300px;
 }
 
 .BTS {
@@ -17,4 +20,39 @@
 
 .container {
     display: flex;
+}
+
+.RM {
+    height: 550px;
+    width: 500px;
+}
+
+.Suga {
+    height: 550px;
+    width: 500px;
+}
+
+.J_hope {
+    height: 550px;
+    width: 500px;
+}
+
+.Jin {
+    height: 550px;
+    width: 500px;
+}
+
+.Jungkook {
+    height: 550px;
+    width: 500px;
+}
+
+.V {
+    height: 550px;
+    width: 500px;
+}
+
+.Jimin {
+    height: 550px;
+    width: 500px;
 }

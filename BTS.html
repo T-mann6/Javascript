@@ -27,27 +27,32 @@
             <img src="img/BTS.png" alt="" id="knapp">
             <button id="reset-button">Wipe Save</button>
         </div>
+        <div class="separator">
+            <div>
+                <h1>BTS Clicker</h1> 
+            </div>  
+        </div>
         <div class="buildings">
-            <div>
-                <button id="Rap-Monster"><img src="img/RM.jpg" alt=""><h4 id="tekst_RM">RM: 0</h4></button>
+            <div class="RM_button">
+                <button id="Rap-Monster"><img src="img/RM.jpg" alt="" class="RM"><h4 id="tekst_RM">RM: 0</h4></button>
             </div>
-            <div>
-                <button id="Suga"><img src="img/Suga.jpg" alt=""><h4 id="tekst_Suga">Suga: 0</h4></button>
+            <div class="Suga_button">
+                <button id="Suga"><img src="img/Suga.jpg" alt="" class="Suga"><h4 id="tekst_Suga">Suga: 0</h4></button>
             </div>
-            <div>
-                <button id="J-hope"><img src="img/J-hope.jpg" alt=""><h4 id="tekst_J-hope">J-hope: 0</h4></button>
+            <div class="J_hope_button">
+                <button id="J-hope"><img src="img/J-hope.jpg" alt="" class="J_hope"><h4 id="tekst_J-hope">J-hope: 0</h4></button>
             </div>
-            <div>
-                <button id="Jin"><img src="img/Jin.jpg" alt=""><h4 id="tekst_Jin">Jin: 0</h4></button>
+            <div class="Jin_button">
+                <button id="Jin"><img src="img/Jin.jpg" alt="" class="Jin"><h4 id="tekst_Jin">Jin: 0</h4></button>
             </div>
-            <div>
-                <button id="Jungkook"><img src="img/Jungkook.jpg" alt=""><h4 id='tekst_Jungkook'>Jungkook: 0</h4></button>
+            <div class="Jungkook_button">
+                <button id="Jungkook"><img src="img/Jungkook.jpg" alt="" class="Jungkook"><h4 id='tekst_Jungkook'>Jungkook: 0</h4></button>
             </div>
-            <div>
-                <button id="V"><img src="img/V.jpg" alt=""><h4 id="tekst_V">V: 0</h4><button>
+            <div class="V_button">
+                <button id="V"><img src="img/V.jpg" alt="" class="V"><h4 id="tekst_V">V: 0</h4></button>
             </div>
-            <div>
-                <button id="Jimin"><img src="img/Jimin.jpg" alt=""><h4 id="tekst_Jimin">Jimin: 0</h4></button>
+            <div class="Jimin_button">
+                <button id="Jimin"><img src="img/Jimin.jpg" alt="" class="Jimin"><h4 id="tekst_Jimin">Jimin: 0</h4></button>
             </div>
         </div>
     </div>
@@ -279,14 +284,6 @@
         EL_reset.addEventListener('click', wipeSave)
         window.addEventListener('load', loadGameState)
         window.addEventListener('beforeunload', saveGameState)
-        window.addEventListener('keydown', function(event) {
-            // Check if Ctrl key and 's' key are pressed
-            if (event.ctrlKey && event.key === 's') {
-                event.preventDefault(); // Prevent the default browser save behavior
-
-                saveGameState(); // Save the game state
-            }
-        })
 
         setInterval(generateSongs, 1000)
     </script>
