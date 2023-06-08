@@ -7,18 +7,13 @@
     overflow-y: scroll;   
 }
 
-.separator {
-    text-align: center;
-    width: 1300px;
-}
-
 .BTS {
     display: flex;
     flex-direction: column;
     width: fit-content;
 }
 
-.container {
+.game {
     display: flex;
 }
 
@@ -55,4 +50,13 @@
 .Jimin {
     height: 550px;
     width: 500px;
+}
+
+.header {
+    text-align: center;
+}
+
+body{
+    background-image: url('img/southkoreaflag.jpg');
+    background-size: cover;
 }
